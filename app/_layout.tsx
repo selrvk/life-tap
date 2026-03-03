@@ -9,10 +9,5 @@ export default function RootLayout() {
     options={{headerShown: false}}
     />
 
-    <Stack.Screen
-    name="tag_details/[id]"
-    options={{headerShown: false}}
-    />
-
   </Stack>;
 }
