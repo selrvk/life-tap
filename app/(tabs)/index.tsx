@@ -7,20 +7,13 @@ export default function Index() {
 
   return (
     <LinearGradient colors={["#FDF6F0", "#F5E6E0", "#EDD5CC"]} className="flex-1">
-      <View className="flex-1 pt-16 pb-12 px-6 justify-between">
-
-        {/* Top label */}
-        <View className="flex-row items-center justify-center">
-          <View className="w-1.5 h-1.5 rounded-full bg-[#8B2A2A] opacity-50 mx-1.5" />
-          <Text className="text-[11px] font-bold tracking-[3px] text-[#8B2A2A]">LIFETAP</Text>
-          <View className="w-1.5 h-1.5 rounded-full bg-[#8B2A2A] opacity-50 mx-1.5" />
-        </View>
+      <View className="flex pt-16 pb-12 px-6 h-screen">
 
         {/* Logo + greeting */}
-        <View className="items-center">
+        <View className="items-center mb-20">
           <Image
             source={require('./../../assets/images/logo.png')}
-            className="w-28 h-28 mb-3"
+            className="w-28 h-28 mb-3s"
             resizeMode="contain"
           />
           <Text className="text-base font-medium text-[#A06060] tracking-wide mb-0.5">
@@ -32,11 +25,11 @@ export default function Index() {
         </View>
 
         {/* Health prompt card */}
-        <View className="flex-row items-center bg-[#FDF0EC] rounded-2xl border border-[#E8C8C0] px-4 py-3">
+        <View className="flex-row items-center bg-[#FDF0EC] rounded-2xl border border-[#E8C8C0] px-4 py-3 mt-20">
           <View className="w-10 h-10 rounded-xl bg-[#F5E0DC] items-center justify-center mr-3">
             <Text className="text-lg text-[#8B2A2A]">♥</Text>
           </View>
-          <View className="flex-1">
+          <View className="flex">
             <Text className="text-sm font-bold text-[#3A1010] tracking-wide mb-0.5">
               How do you feel today?
             </Text>
@@ -47,7 +40,7 @@ export default function Index() {
         </View>
 
         {/* Action buttons */}
-        <View className="w-full">
+        <View className="w-full mt-40">
           <ActionButton
             icon="⟳"
             label="Read LifeTap"
