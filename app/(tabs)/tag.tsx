@@ -1,55 +1,68 @@
 import { LinearGradient } from "expo-linear-gradient";
 import { useRouter } from "expo-router";
-import { Image, Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
+import { Image, Pressable, ScrollView, Text, View } from "react-native";
 
 export default function Tag() {
   const router = useRouter();
 
   return (
-    <LinearGradient colors={["#EAF4F2", "#C8E8E3", "#A4DAD2"]} style={styles.container}>
-
-      <ScrollView
-        contentContainerStyle={styles.scroll}
-        showsVerticalScrollIndicator={false}
+    <LinearGradient colors={["#EAF4F2", "#C8E8E3", "#A4DAD2"]} className="flex">
+      <View
+        className="px-5 pt-16 h-screen"
       >
         {/* Profile Card */}
-        <View style={styles.card}>
-          
+        <View className="bg-white/82 rounded-3xl p-7 shadow-lg border border-[#C0E0DB]"
+          style={{
+            shadowColor: "#2D7A72",
+            shadowOpacity: 0.12,
+            shadowRadius: 20,
+            shadowOffset: { width: 0, height: 8 },
+            elevation: 6,
+          }}
+        >
           {/* Logo / Avatar Section */}
-          <View style={styles.avatarWrapper}>
-            <View style={styles.avatarRing}>
+          <View className="items-center mb-4">
+            <View className="w-[110px] h-[110px] rounded-full border-[3px] border-[#58A99F] bg-[#EAF7F5] items-center justify-center overflow-hidden">
               <Image
                 source={require('./../../assets/images/logo.png')}
-                style={styles.avatar}
+                className="w-[90px] h-[90px]"
                 resizeMode="contain"
               />
             </View>
-            <View style={styles.statusBadge}>
-              <View style={styles.statusDot} />
-              <Text style={styles.statusText}>Active</Text>
+            <View className="flex-row items-center gap-[5px] bg-[#E6F7F4] border border-[#A4DAD2] px-[10px] py-1 rounded-full mt-[10px]">
+              <View className="w-[7px] h-[7px] rounded-full bg-[#3CB371]" />
+              <Text className="text-xs font-semibold text-[#2D7A50] tracking-[0.5px]">Active</Text>
             </View>
           </View>
 
           {/* Name */}
-          <Text style={styles.patientName}>Charles Jansen D. Alcantara</Text>
-          <Text style={styles.patientId}>Patient ID: #00-2024-CJA</Text>
+          <Text className="text-xl font-extrabold text-[#1A3D3A] text-center tracking-[0.3px]">
+            Charles Jansen D. Alcantara
+          </Text>
+          <Text className="text-xs text-[#5A8A85] text-center mt-1 tracking-[0.8px]">
+            Patient ID: #00-2024-CJA
+          </Text>
 
           {/* Divider */}
-          <View style={styles.divider} />
+          <View className="h-px bg-[#C0E0DB] my-[10px]" />
 
-          {/* Info Rows */}
-          <View style={styles.infoSection}>
-            <Text style={styles.sectionTitle}>CONTACT DETAILS</Text>
+          {/* Info Section */}
+          <View className="gap-[10px]">
+            <Text className="text-[10px] font-bold tracking-[2.5px] text-[#58A99F] mb-1">
+              CONTACT DETAILS
+            </Text>
 
             <InfoRow icon="📱" label="Primary Phone" value="+63 123 456 7890" />
 
-            <View style={styles.subDivider} />
-            <Text style={styles.sectionTitle}>EMERGENCY CONTACTS</Text>
+            <View className="h-px bg-[#DFF0EE] my-[14px]" />
+            <Text className="text-[10px] font-bold tracking-[2.5px] text-[#58A99F] mb-1">
+              EMERGENCY CONTACTS
+            </Text>
 
             <InfoRow icon="👤" label="Contact Person 1" value="Charles" />
             <InfoRow icon="📞" label="Phone" value="+63 098 765 4321" />
 
-            <View style={styles.subDivider} />
+            <View className="h-px bg-[#DFF0EE] my-[14px]" />
 
             <InfoRow icon="👤" label="Contact Person 2" value="Alcantara" />
             <InfoRow icon="📞" label="Phone" value="+63 098 765 4321" />
@@ -58,196 +71,25 @@ export default function Tag() {
 
         {/* Home Button */}
         <Pressable
-          style={({ pressed }) => [styles.homeBtn, pressed && styles.homeBtnPressed]}
+          className="mt-6 bg-[#3A8C82] rounded-2xl py-4 items-center active:bg-[#2D7A72] active:scale-[0.98]"
+          style={({ pressed }) => pressed ? { backgroundColor: "#2D7A72", transform: [{ scale: 0.98 }] } : {}}
           onPress={() => router.push("/")}
         >
-          <Text style={styles.homeBtnText}>← Return to Home</Text>
+          <Text className="text-white text-base font-bold tracking-[0.5px]">← Return to Home</Text>
         </Pressable>
-
-      </ScrollView>
+      </View>
     </LinearGradient>
   );
 }
 
 function InfoRow({ icon, label, value }: { icon: string; label: string; value: string }) {
   return (
-    <View style={styles.infoRow}>
-      <Text style={styles.infoIcon}>{icon}</Text>
-      <View style={styles.infoText}>
-        <Text style={styles.infoLabel}>{label}</Text>
-        <Text style={styles.infoValue}>{value}</Text>
+    <View className="flex-row items-center gap-3 bg-[#F2FAF9] rounded-xl py-[10px] px-[14px]">
+      <Text className="text-base">{icon}</Text>
+      <View className="flex-1">
+        <Text className="text-[11px] text-[#7AADA9] font-medium tracking-[0.3px]">{label}</Text>
+        <Text className="text-[15px] text-[#1A3D3A] font-semibold mt-[1px]">{value}</Text>
       </View>
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  headerBar: {
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "center",
-    gap: 8,
-    paddingTop: 56,
-    paddingBottom: 12,
-    paddingHorizontal: 24,
-  },
-  headerDot: {
-    width: 5,
-    height: 5,
-    borderRadius: 999,
-    backgroundColor: "#3A8C82",
-    opacity: 0.6,
-  },
-  headerLabel: {
-    fontSize: 11,
-    fontWeight: "700",
-    letterSpacing: 3,
-    color: "#3A8C82",
-  },
-  scroll: {
-    paddingHorizontal: 20,
-    paddingTop: 8,
-    paddingBottom: 0,
-  },
-  card: {
-    backgroundColor: "#FFFFFFD0",
-    borderRadius: 24,
-    padding: 28,
-    shadowColor: "#2D7A72",
-    shadowOpacity: 0.12,
-    shadowRadius: 20,
-    shadowOffset: { width: 0, height: 8 },
-    elevation: 6,
-    borderWidth: 1,
-    borderColor: "#C0E0DB",
-  },
-  avatarWrapper: {
-    alignItems: "center",
-    marginBottom: 16,
-  },
-  avatarRing: {
-    width: 110,
-    height: 110,
-    borderRadius: 55,
-    borderWidth: 3,
-    borderColor: "#58A99F",
-    backgroundColor: "#EAF7F5",
-    alignItems: "center",
-    justifyContent: "center",
-    overflow: "hidden",
-  },
-  avatar: {
-    width: 90,
-    height: 90,
-  },
-  statusBadge: {
-    flexDirection: "row",
-    alignItems: "center",
-    gap: 5,
-    backgroundColor: "#E6F7F4",
-    borderWidth: 1,
-    borderColor: "#A4DAD2",
-    paddingHorizontal: 10,
-    paddingVertical: 4,
-    borderRadius: 999,
-    marginTop: 10,
-  },
-  statusDot: {
-    width: 7,
-    height: 7,
-    borderRadius: 999,
-    backgroundColor: "#3CB371",
-  },
-  statusText: {
-    fontSize: 12,
-    fontWeight: "600",
-    color: "#2D7A50",
-    letterSpacing: 0.5,
-  },
-  patientName: {
-    fontSize: 20,
-    fontWeight: "800",
-    color: "#1A3D3A",
-    textAlign: "center",
-    letterSpacing: 0.3,
-  },
-  patientId: {
-    fontSize: 12,
-    color: "#5A8A85",
-    textAlign: "center",
-    marginTop: 4,
-    letterSpacing: 0.8,
-  },
-  divider: {
-    height: 1,
-    backgroundColor: "#C0E0DB",
-    marginVertical: 10,
-  },
-  subDivider: {
-    height: 1,
-    backgroundColor: "#DFF0EE",
-    marginVertical: 14,
-  },
-  infoSection: {
-    gap: 10,
-  },
-  sectionTitle: {
-    fontSize: 10,
-    fontWeight: "700",
-    letterSpacing: 2.5,
-    color: "#58A99F",
-    marginBottom: 4,
-  },
-  infoRow: {
-    flexDirection: "row",
-    alignItems: "center",
-    gap: 12,
-    backgroundColor: "#F2FAF9",
-    borderRadius: 12,
-    paddingVertical: 10,
-    paddingHorizontal: 14,
-  },
-  infoIcon: {
-    fontSize: 16,
-  },
-  infoText: {
-    flex: 1,
-  },
-  infoLabel: {
-    fontSize: 11,
-    color: "#7AADA9",
-    fontWeight: "500",
-    letterSpacing: 0.3,
-  },
-  infoValue: {
-    fontSize: 15,
-    color: "#1A3D3A",
-    fontWeight: "600",
-    marginTop: 1,
-  },
-  homeBtn: {
-    marginTop: 24,
-    backgroundColor: "#3A8C82",
-    borderRadius: 16,
-    paddingVertical: 16,
-    alignItems: "center",
-    shadowColor: "#2D7A72",
-    shadowOpacity: 0.25,
-    shadowRadius: 10,
-    shadowOffset: { width: 0, height: 4 },
-    elevation: 4,
-  },
-  homeBtnPressed: {
-    backgroundColor: "#2D7A72",
-    transform: [{ scale: 0.98 }],
-  },
-  homeBtnText: {
-    color: "#FFFFFF",
-    fontSize: 16,
-    fontWeight: "700",
-    letterSpacing: 0.5,
-  },
-});

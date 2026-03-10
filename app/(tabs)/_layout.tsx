@@ -12,9 +12,30 @@ const _Layout = () => {
         }}
       />
       <Tabs.Screen
-        name="profile"
+        name="tag"
         options={{
           title: "Profile",
+          headerShown: false,
+        }}
+      />
+      <Tabs.Screen
+        name="demo_read_loading"
+        options={{
+          title: "Demo Read",
+          headerShown: false,
+        }}
+      />
+      <Tabs.Screen
+        name="demo_update_loading"
+        options={{
+          title: "Demo UL",
+          headerShown: false,
+        }}
+      />
+      <Tabs.Screen
+        name="demo_update_done"
+        options={{
+          title: "Demo UD",
           headerShown: false,
         }}
       />
