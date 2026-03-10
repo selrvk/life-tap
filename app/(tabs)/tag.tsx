@@ -7,13 +7,6 @@ export default function Tag() {
 
   return (
     <LinearGradient colors={["#EAF4F2", "#C8E8E3", "#A4DAD2"]} style={styles.container}>
-      
-      {/* Header Bar */}
-      <View style={styles.headerBar}>
-        <View style={styles.headerDot} />
-        <Text style={styles.headerLabel}>MEDICAL INFORMATION</Text>
-        <View style={styles.headerDot} />
-      </View>
 
       <ScrollView
         contentContainerStyle={styles.scroll}
@@ -117,7 +110,7 @@ const styles = StyleSheet.create({
   scroll: {
     paddingHorizontal: 20,
     paddingTop: 8,
-    paddingBottom: 48,
+    paddingBottom: 0,
   },
   card: {
     backgroundColor: "#FFFFFFD0",
@@ -191,7 +184,7 @@ const styles = StyleSheet.create({
   divider: {
     height: 1,
     backgroundColor: "#C0E0DB",
-    marginVertical: 20,
+    marginVertical: 10,
   },
   subDivider: {
     height: 1,

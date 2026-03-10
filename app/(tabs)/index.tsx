@@ -6,11 +6,11 @@ export default function Index() {
   const router = useRouter();
 
   return (
-    <LinearGradient colors={["#FDF6F0", "#F5E6E0", "#EDD5CC"]} className="flex-1">
+    <LinearGradient colors={["#EAF4F2", "#C8E8E3", "#A4DAD2"]} className="flex-1">
       <View className="flex pt-16 pb-12 px-6 h-screen">
 
         {/* Logo + greeting */}
-        <View className="items-center mb-20">
+        <View className="items-center mb-20 mt-10">
           <Image
             source={require('./../../assets/images/logo.png')}
             className="w-28 h-28 mb-3s"
