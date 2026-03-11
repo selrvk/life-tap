@@ -13,7 +13,7 @@ export default function Index() {
         <View className="items-center mb-20 mt-10">
           <Image
             source={require('./../../assets/images/logo.png')}
-            className="w-28 h-28 mb-3s"
+            className="w-40 h-40 mb-3s"
             resizeMode="contain"
           />
           <Text className="text-base font-medium text-[#A06060] tracking-wide mb-0.5">
@@ -25,7 +25,7 @@ export default function Index() {
         </View>
 
         {/* Health prompt card */}
-        <View className="flex-row items-center bg-[#FDF0EC] rounded-2xl border border-[#E8C8C0] px-4 py-3 mt-20">
+        <View className="flex-row items-center bg-[#FDF0EC] rounded-2xl border border-[#E8C8C0] px-4 py-3 ">
           <View className="w-10 h-10 rounded-xl bg-[#F5E0DC] items-center justify-center mr-3">
             <Text className="text-lg text-[#8B2A2A]">♥</Text>
           </View>
