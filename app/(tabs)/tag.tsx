@@ -71,11 +71,11 @@ export default function Tag() {
 
         {/* Home Button */}
         <Pressable
-          className="mt-6 bg-[#3A8C82] rounded-2xl py-4 items-center active:bg-[#2D7A72] active:scale-[0.98]"
+          className="mt-6 bg-[#F5E0DC] border border-[#E8C8C0] rounded-2xl py-4 items-center active:bg-[#2D7A72] active:scale-[0.98]"
           style={({ pressed }) => pressed ? { backgroundColor: "#2D7A72", transform: [{ scale: 0.98 }] } : {}}
           onPress={() => router.push("/")}
         >
-          <Text className="text-white text-base font-bold tracking-[0.5px]">← Return to Home</Text>
+          <Text className="text-[#8B2A2A] text-base font-bold tracking-[0.5px]">← Return to Home</Text>
         </Pressable>
       </View>
     </LinearGradient>
