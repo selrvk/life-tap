@@ -2,6 +2,7 @@ import { LinearGradient } from "expo-linear-gradient";
 import { useRouter } from "expo-router";
 import { useEffect, useRef } from "react";
 import { Animated, Pressable, StyleSheet, Text, View } from "react-native";
+import NfcManager, { NfcTech } from "react-native-nfc-manager";
 
 export default function Demo_Read_Loading() {
   const router = useRouter();
@@ -12,6 +13,30 @@ export default function Demo_Read_Loading() {
   const iconPulse = useRef(new Animated.Value(1)).current;
 
   useEffect(() => {
+
+    NfcManager.start();
+    const scanTag = async () => {
+      try {
+        console.log("Waiting for NFC tag...");
+
+        await NfcManager.requestTechnology(NfcTech.Ndef);
+
+        const tag = await NfcManager.getTag();
+
+        console.log("Tag found:", tag);
+
+        // Example: go to tag screen after scan
+        router.push("/tag");
+
+      } catch (error) {
+        console.warn("NFC error:", error);
+      } finally {
+        NfcManager.cancelTechnologyRequest();
+      }
+    };
+    scanTag();
+
+
     const makeRingAnim = (anim: Animated.Value, delay: number) =>
       Animated.loop(
         Animated.sequence([
