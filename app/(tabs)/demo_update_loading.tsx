@@ -11,6 +11,7 @@ export default function Demo_Update_Loading() {
   const dotScale1 = useRef(new Animated.Value(1)).current;
   const dotScale2 = useRef(new Animated.Value(1)).current;
   const dotScale3 = useRef(new Animated.Value(1)).current;
+  const pulseAnim = useRef(new Animated.Value(1)).current;
 
   const [progressLabel, setProgressLabel] = useState("Connecting to device…");
 
@@ -57,6 +58,14 @@ export default function Demo_Update_Loading() {
     makeDot(dotScale1, 0).start();
     makeDot(dotScale2, 200).start();
     makeDot(dotScale3, 400).start();
+
+    // Icon pulse
+    Animated.loop(
+      Animated.sequence([
+        Animated.timing(pulseAnim, { toValue: 1.08, duration: 900, useNativeDriver: true }),
+        Animated.timing(pulseAnim, { toValue: 1, duration: 900, useNativeDriver: true }),
+      ])
+    ).start();
   }, []);
 
   const barWidth = progressAnim.interpolate({
@@ -66,11 +75,11 @@ export default function Demo_Update_Loading() {
 
   const barColor = progressAnim.interpolate({
     inputRange: [0, 0.5, 1],
-    outputRange: ["#4ECDC4", "#58C4A0", "#3CB371"],
+    outputRange: ["#C88080", "#9A3030", "#7A2020"],
   });
 
   return (
-    <LinearGradient colors={["#0C1F2C", "#0E2D3A", "#0C1F2C"]} style={styles.container}>
+    <LinearGradient colors={["#EAF4F2", "#F5E8E8", "#FDF0EC"]} style={styles.container}>
 
       {/* Top label */}
       <View style={styles.topLabel}>
@@ -83,7 +92,7 @@ export default function Demo_Update_Loading() {
       <Animated.View style={[styles.center, { opacity: fadeIn }]}>
 
         {/* Icon */}
-        <View style={styles.iconWrapper}>
+        <Animated.View style={[styles.iconWrapper, { transform: [{ scale: pulseAnim }] }]}>
           <View style={styles.iconOuter}>
             <View style={styles.iconInner}>
               <Text style={styles.iconEmoji}>✦</Text>
@@ -95,7 +104,7 @@ export default function Demo_Update_Loading() {
           <View style={[styles.corner, styles.cornerTR]} />
           <View style={[styles.corner, styles.cornerBL]} />
           <View style={[styles.corner, styles.cornerBR]} />
-        </View>
+        </Animated.View>
 
         <Text style={styles.mainTitle}>Updating Record</Text>
         <Text style={styles.subTitle}>Do not move your device{"\n"}away from the tag</Text>
@@ -148,6 +157,8 @@ const styles = StyleSheet.create({
     paddingBottom: 48,
     paddingHorizontal: 28,
   },
+
+  // Top label — matches the subtle tracking label style from main page
   topLabel: {
     flexDirection: "row",
     alignItems: "center",
@@ -158,19 +169,23 @@ const styles = StyleSheet.create({
     width: 5,
     height: 5,
     borderRadius: 99,
-    backgroundColor: "#3CB371",
-    opacity: 0.8,
+    backgroundColor: "#7A2020",
+    opacity: 0.7,
   },
   labelText: {
     fontSize: 11,
     fontWeight: "700",
     letterSpacing: 3,
-    color: "#3CB371",
+    color: "#7A2020",
   },
+
+  // Center
   center: {
     alignItems: "center",
     gap: 18,
   },
+
+  // Icon — warm cream bg with maroon accent, mirrors the ActionButton icon box
   iconWrapper: {
     width: 120,
     height: 120,
@@ -182,9 +197,9 @@ const styles = StyleSheet.create({
     width: 110,
     height: 110,
     borderRadius: 22,
-    backgroundColor: "#112233",
+    backgroundColor: "#FDF0EC",
     borderWidth: 1.5,
-    borderColor: "#1E4A5A",
+    borderColor: "#E8C8C0",
     alignItems: "center",
     justifyContent: "center",
   },
@@ -192,51 +207,61 @@ const styles = StyleSheet.create({
     width: 72,
     height: 72,
     borderRadius: 14,
-    backgroundColor: "#0E2D3A",
+    backgroundColor: "#F5E0DC",
     borderWidth: 1,
-    borderColor: "#3CB37150",
+    borderColor: "#9A303050",
     alignItems: "center",
     justifyContent: "center",
   },
   iconEmoji: {
     fontSize: 30,
-    color: "#3CB371",
+    color: "#8B2A2A",
   },
+
+  // Corner accents in maroon
   corner: {
     position: "absolute",
     width: 12,
     height: 12,
-    borderColor: "#3CB371",
+    borderColor: "#7A2020",
   },
   cornerTL: { top: 0, left: 0, borderTopWidth: 2, borderLeftWidth: 2, borderTopLeftRadius: 4 },
   cornerTR: { top: 0, right: 0, borderTopWidth: 2, borderRightWidth: 2, borderTopRightRadius: 4 },
   cornerBL: { bottom: 0, left: 0, borderBottomWidth: 2, borderLeftWidth: 2, borderBottomLeftRadius: 4 },
   cornerBR: { bottom: 0, right: 0, borderBottomWidth: 2, borderRightWidth: 2, borderBottomRightRadius: 4 },
+
+  // Text — mirrors main page heading colours
   mainTitle: {
     fontSize: 26,
     fontWeight: "800",
-    color: "#E8F5F0",
+    color: "#3A1010",
     letterSpacing: 0.4,
   },
   subTitle: {
     fontSize: 14,
-    color: "#5A8A7A",
+    color: "#A07070",
     textAlign: "center",
     lineHeight: 21,
     letterSpacing: 0.2,
   },
+
+  // Progress bar — warm cream track, maroon fill
   barTrack: {
     width: "100%",
     height: 6,
-    backgroundColor: "#112233",
+    backgroundColor: "#F5E0DC",
     borderRadius: 99,
     overflow: "hidden",
     marginTop: 4,
+    borderWidth: 1,
+    borderColor: "#E8C8C0",
   },
   barFill: {
     height: "100%",
     borderRadius: 99,
   },
+
+  // Step row
   stepRow: {
     flexDirection: "row",
     alignItems: "center",
@@ -244,7 +269,7 @@ const styles = StyleSheet.create({
   },
   stepText: {
     fontSize: 12,
-    color: "#4A8A78",
+    color: "#A07070",
     letterSpacing: 0.4,
     fontWeight: "500",
   },
@@ -257,39 +282,43 @@ const styles = StyleSheet.create({
     width: 5,
     height: 5,
     borderRadius: 99,
-    backgroundColor: "#3CB371",
+    backgroundColor: "#8B2A2A",
   },
+
+  // Warning card — mirrors the health prompt card from main page
   warnCard: {
     flexDirection: "row",
     alignItems: "flex-start",
     gap: 10,
-    backgroundColor: "#1A2E20",
+    backgroundColor: "#FDF0EC",
     borderWidth: 1,
-    borderColor: "#2A4A30",
-    borderRadius: 14,
+    borderColor: "#E8C8C0",
+    borderRadius: 16,
     paddingHorizontal: 16,
     paddingVertical: 12,
     marginTop: 6,
   },
   warnIcon: {
     fontSize: 14,
-    color: "#F0A020",
+    color: "#C07030",
     marginTop: 1,
   },
   warnText: {
     flex: 1,
     fontSize: 12,
-    color: "#7AAA85",
+    color: "#A07070",
     lineHeight: 18,
     letterSpacing: 0.2,
   },
+
+  // Bottom
   bottom: {
     alignItems: "center",
     gap: 14,
   },
   hintText: {
     fontSize: 12,
-    color: "#2A4A3A",
+    color: "#C8A0A0",
     textAlign: "center",
     letterSpacing: 0.3,
   },
@@ -299,7 +328,7 @@ const styles = StyleSheet.create({
   },
   skipText: {
     fontSize: 13,
-    color: "#2A4A3A",
+    color: "#A07070",
     letterSpacing: 1,
     fontWeight: "500",
   },
