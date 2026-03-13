@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "life-tap",
-    "slug": "life-tap",
+    "name": "LifeTap",
+    "slug": "LifeTap",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icons/icon.png",
@@ -39,7 +39,7 @@
       [
         "expo-splash-screen",
         {
-          "image": "./assets/images/splash-icon.png",
+          "image": "./assets/icons/icon.png",
           "imageWidth": 200,
           "resizeMode": "contain",
           "backgroundColor": "#ffffff",
